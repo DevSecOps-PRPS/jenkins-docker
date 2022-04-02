@@ -16,4 +16,4 @@ pipeline {
   }
 }
 
-## to Do add following steps: docker tag, docker test(run container, expose it and curl localhost3000) docker scan and docker push
+// to Do add following steps: docker tag, docker test(run container, expose it and curl localhost3000) docker scan and docker push
