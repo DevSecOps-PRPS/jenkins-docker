@@ -13,5 +13,12 @@ pipeline {
     sh 'docker build -t grafana grafana/'
       }
     }
+#    stage('Docker tag grafana image') {
+#  steps {
+#    sh ''
+#      }
+#    }
   }
 }
+
+## to Do add following steps: docker tag, docker test(run container, expose it and curl localhost3000) docker scan and docker push
