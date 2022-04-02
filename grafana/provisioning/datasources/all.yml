@@ -1,0 +1,23 @@
+datasources:
+- name: 'prom1'
+  type: 'prometheus'
+  access: 'proxy'
+  org_id: 1
+  url: 'http://prometheus:9090'
+  is_default: true
+  version: 1
+  editable: true
+- name: prpssonarqube
+  type: grafana-simple-json-datasource
+  enabled: true
+  url: 'http://localhost:8600'
+  access: proxy
+  editable: true
+  isDefault: false
+- name: prps-cloudwatch
+  type: cloudwatch
+  editable: true
+  jsonData:
+    authType: default
+    Endpoint: monitoring.us-gov-west-1.amazonaws.com
+    defaultRegion: us-gov-west-1
