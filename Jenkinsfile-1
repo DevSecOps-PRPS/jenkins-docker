@@ -13,11 +13,6 @@ pipeline {
     sh 'docker build -t grafana grafana/'
       }
     }
-#    stage('Docker tag grafana image') {
-#  steps {
-#    sh ''
-#      }
-#    }
   }
 }
 
