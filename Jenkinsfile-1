@@ -13,6 +13,11 @@ pipeline {
     sh 'docker build -t grafana grafana/'
       }
     }
+    stage('Docker tag image') {
+  steps {
+    sh 'docker tag  grafana ali0078/grafana:v1.0.0'
+      }
+    }
   }
 }
 
