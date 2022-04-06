@@ -16,7 +16,6 @@ pipeline {
     stage('Docker tag image') {
   steps {
     sh 'docker tag  grafana ali0078/grafana:v1.0.0'
-    sh 'docker run -it --rm anchore/grype:latest alpine:latest'
       }
     }
   }
