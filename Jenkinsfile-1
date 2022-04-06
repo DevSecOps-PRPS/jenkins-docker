@@ -27,5 +27,3 @@ pipeline {
         sh 'docker run -it --rm anchore/grype:latest alpine:latest'
   }
 }
-}
-// to Do add following steps: docker tag, docker test(run container, expose it and curl localhost3000) docker scan and docker push
