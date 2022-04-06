@@ -19,11 +19,12 @@ pipeline {
       }
     }
     
-    stage('Anchore scan') {
-   steps {
-     sh 'docker run -it --rm anchore/grype:latest alpine:latest'
+    stage('Front-end') {
+      agent {
+        docker { image 'anchore/grype:latest' }
       }
-    }
+      steps {
+        sh 'docker run -it --rm anchore/grype:latest alpine:latest'
   }
 }
 
