@@ -22,7 +22,7 @@ pipeline {
         docker { image 'anchore/grype:latest' }
       }
       steps {
-        sh 'docker run -it --rm --entrypoint='' anchore/grype:latest alpine:latest'
+        sh 'docker run -it --rm anchore/grype:latest alpine:latest'
       }
     }
   }
