@@ -18,12 +18,5 @@ pipeline {
     sh 'docker tag  grafana ali0078/grafana:v1.0.0'
       }
     }
-    
-    stage('Front-end') {
-      agent {
-        docker { image 'anchore/grype:latest' }
-      }
-      steps {
-        sh 'docker run -it --rm anchore/grype:latest alpine:latest'
   }
 }
