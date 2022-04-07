@@ -18,10 +18,5 @@ pipeline {
     sh 'docker tag  grafana ali0078/grafana:v1.0.0'
       }
     }
-    stage('anchore container scan'){
-    docker.image('anchore/grype:latest').inside("""--entrypoint=''""") {
-    // some steps here
-  }
-  }
 }
 }
