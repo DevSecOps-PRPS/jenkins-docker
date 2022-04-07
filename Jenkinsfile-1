@@ -23,4 +23,4 @@ pipeline {
     }
 }
 }
-// Ali to fail pipeline on high vulnerabilty using grype flag fix them then push the container to the repository
+// Ali to fail pipeline on high vulnerabilty using grype flag fix them then push the container to the repository, adding anchore/syft to provide software BOM
