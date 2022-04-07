@@ -18,11 +18,21 @@ pipeline {
       }
     }
     stage('Anchore test') {
-      agent {
-        docker { image 'anchore/grype:latest' }
+      environment {
+        IMAGE1 = "anchore/grype:latest"
       }
-      steps {
-        sh 'docker run -it --rm anchore/grype:latest alpine:latest'
+
+      parallel{
+        stage("Dbms") {
+          agent{
+            label 'docker'
+          }
+          steps {
+            script {
+              docker.image("${env.IMAGE1}").inside("""--entrypoint=''""") 
+            }
+          }
+        }
       }
     }
   }
