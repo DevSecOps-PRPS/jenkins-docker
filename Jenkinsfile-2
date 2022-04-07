@@ -17,23 +17,25 @@ pipeline {
         sh 'node --version'
       }
     }
-    stage('Anchore test') {
-      environment {
-        IMAGE1 = "anchore/grype:latest"
-      }
+    // stage('Anchore test') {
+    //   environment {
+    //     IMAGE1 = "anchore/grype:latest"
+    //   }
 
-      parallel{
-        stage("Dbms") {
-          agent{
-            label 'docker'
-          }
-          steps {
-            script {
-              docker.image("${env.IMAGE1}").inside("""--entrypoint=''""") 
-            }
-          }
-        }
-      }
-    }
+    //   parallel{
+    //     stage("Dbms") {
+    //       agent{
+    //         label 'docker'
+    //       }
+    //       steps {
+    //         script {
+    //           docker.image("${env.IMAGE1}").inside("""--entrypoint=''""") {
+    //             sh 'docker run '
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
   }
 }
