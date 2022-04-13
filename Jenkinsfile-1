@@ -16,6 +16,11 @@ pipeline {
     sh 'docker tag  grafana ali0078/grafana:v1.0.0'
       }
     }
+     stage('Docker run image') {
+  steps {
+    sh 'docker run -d --rm --name Alicontainer grafana ali0078/grafana:v1.0.0'
+      }
+    }
     stage('Container Vulnerability Scanning') {
   steps {
     sh 'grype ali0078/grafana:v1.0.0 --scope AllLayers'
