@@ -31,9 +31,12 @@ pipeline {
     sh 'syft ali0078/grafana:v1.0.0 --scope all-layers'
   }
     } 
-     stage ('docker push image') {
+    stage ('docker push image') {
    steps {
      sh 'docker push grafana ali0078/grafana:v1.0.0'
+  }
+     }
+
 
 // Ali to fail pipeline on high vulnerabilty using grype flag fix them then push the container to the repository, adding anchore/syft to provide software BOM, see hot to present the finding may be in grafana or artifactory
 // penetration testing with owasp
