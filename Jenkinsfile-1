@@ -33,7 +33,7 @@ pipeline {
     } 
     stage ('docker push image') {
    steps {
-     sh 'docker push grafana ali0078/grafana:v1.0.0'
+     sh 'docker push ali0078/grafana:v1.0.0'
   }
      }
 
