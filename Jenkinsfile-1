@@ -23,6 +23,11 @@ pipeline {
       }
     }
     
+   stage('Docker build grafana image') {
+  steps {
+    sh 'docker build -t grafana grafana/'
+      }
+    }
     stage('Docker tag image') {
   steps {
     sh 'docker tag  grafana hergi2004/grafana:v1.0.0'
