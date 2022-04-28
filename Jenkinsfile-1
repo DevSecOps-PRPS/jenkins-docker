@@ -1,5 +1,12 @@
 pipeline {
   agent any
+  environment {
+    //once you sign up for Docker hub, use that user_id here
+    registry = "hergi2004/grafana:v1.0.0"
+    //- update your credentials ID after creating credentials for connecting to Docker Hub
+    registryCredential = 'dockerhub_id'
+    dockerImage = ''
+}
   stages {
     stage('Docker Version') {
       steps {
@@ -13,30 +20,36 @@ pipeline {
     }
     stage('Docker tag image') {
   steps {
-    sh 'docker tag  grafana ali0078/grafana:v1.0.0'
+    sh 'docker tag  grafana hergi2004/grafana:v1.0.0'
       }
     }
      stage('Docker run image') {
   steps {
-    sh 'docker run -d --rm grafana ali0078/grafana:v1.0.0'
+    sh 'docker run -d --rm grafana hergi2004/grafana:v1.0.0'
       }
     }
     stage('Container Vulnerability Scanning') {
   steps {
-    sh 'grype ali0078/grafana:v1.0.0 --scope AllLayers'
+    sh 'grype hergi204/grafana:v1.0.0 --scope AllLayers'
   }
     } 
      stage('Container BOM with syft') {
   steps {
-    sh 'syft ali0078/grafana:v1.0.0 --scope all-layers'
+    sh 'syft hergi2004/grafana:v1.0.0 --scope all-layers'
   }
     } 
-    stage ('docker push image') {
-   steps {
-     sh 'docker push ali0078/grafana:v1.0.0'
-  }
-     }
 
+     // Uploading Docker images into Docker Hub
+    stage('Upload Image') {
+     steps{    
+         script {
+            docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+            }
+        }
+      }
+    }
+    
   }
 }
 // Ali to fail pipeline on high vulnerabilty using grype flag fix them then push the container to the repository, adding anchore/syft to provide software BOM, see hot to present the finding may be in grafana or artifactory
