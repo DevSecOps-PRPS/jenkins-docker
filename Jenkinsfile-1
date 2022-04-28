@@ -5,7 +5,7 @@ pipeline {
     registry = "hergi2004/grafana:v1.0.0"
     //- update your credentials ID after creating credentials for connecting to Docker Hub
     registryCredential = 'dockerhub_id'
-    dockerImage = 'hergi2004/grafana:v1.0.0'
+    dockerImage = ''
 }
   stages {
     stage('Docker Version') {
@@ -39,7 +39,14 @@ pipeline {
 //  }
 //    } 
 
-V
+    // Building Docker images
+    stage('Building image') {
+      steps{
+        script {
+          dockerImage = docker.build registry
+        }
+      }
+    }
 
      // Uploading Docker images into Docker Hub
     stage('Upload Image') {
