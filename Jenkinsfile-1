@@ -33,16 +33,16 @@ pipeline {
     sh 'docker run -d --rm grafana hergi2004/grafana:v1.0.0'
       }
     }
-//    stage('Container Vulnerability Scanning') {
-//  steps {
-//    sh 'grype hergi204/grafana:v1.0.0 --scope AllLayers'
-//  }
-//    } 
-//     stage('Container BOM with syft') {
-//  steps {
-//    sh 'syft hergi2004/grafana:v1.0.0 --scope all-layers'
-//  }
-//    } 
+    stage('Container Vulnerability Scanning') {
+  steps {
+    sh 'grype hergi204/grafana:v1.0.0 --scope AllLayers'
+  }
+    } 
+     stage('Container BOM with syft') {
+  steps {
+    sh 'syft hergi2004/grafana:v1.0.0 --scope all-layers'
+  }
+    } 
 
      // Uploading Docker images into Docker Hub
     stage('Upload Image') {
