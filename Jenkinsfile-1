@@ -23,11 +23,11 @@ pipeline {
       }
     }
     
-   stage('Docker build grafana image') {
-  steps {
-    sh 'docker build -t grafana grafana/'
-      }
-    }
+//   stage('Docker build grafana image') {
+//  steps {
+//    sh 'docker build -t grafana grafana/'
+ //     }
+ //   }
     stage('Docker tag image') {
   steps {
     sh 'docker tag  grafana hergi2004/grafana:v1.0.0'
@@ -40,7 +40,7 @@ pipeline {
     }
     stage('Container Vulnerability Scanning') {
   steps {
-    sh 'grype hergi204/grafana:v1.0.0 --scope AllLayers'
+    sh 'grype hergi2004/grafana:v1.0.0 --scope AllLayers'
   }
     } 
      stage('Container BOM with syft') {
