@@ -13,11 +13,16 @@ pipeline {
         sh 'docker --version'
       }
     }
-    stage('Docker build grafana image') {
-  steps {
-    sh 'docker build -t grafana grafana/'
+
+    // Building Docker images
+    stage('Building image') {
+      steps{
+        script {
+          dockerImage = docker.build registry
+        }
       }
     }
+    
     stage('Docker tag image') {
   steps {
     sh 'docker tag  grafana hergi2004/grafana:v1.0.0'
@@ -38,15 +43,6 @@ pipeline {
 //    sh 'syft hergi2004/grafana:v1.0.0 --scope all-layers'
 //  }
 //    } 
-
-    // Building Docker images
-    stage('Building image') {
-      steps{
-        script {
-          dockerImage = docker.build registry
-        }
-      }
-    }
 
      // Uploading Docker images into Docker Hub
     stage('Upload Image') {
