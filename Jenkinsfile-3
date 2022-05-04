@@ -1,12 +1,12 @@
 pipeline {
   agent { dockerfile true }
-    environment {
-    //once you sign up for Docker hub, use that user_id here
-    registry = "hergi2004/grafana:v1.0.0"
-    //- update your credentials ID after creating credentials for connecting to Docker Hub
-    registryCredential = 'dockerhub_id'
-    dockerImage = ''
-}
+//     environment {
+//     //once you sign up for Docker hub, use that user_id here
+//     registry = "hergi2004/grafana:v1.0.0"
+//     //- update your credentials ID after creating credentials for connecting to Docker Hub
+//     registryCredential = 'dockerhub_id'
+//     dockerImage = ''
+// }
   stages {
     stage('Tooling') {
       steps {
@@ -22,50 +22,51 @@ pipeline {
         '''
       }
     }
-    stage('Docker Version') {
-      steps {
-        sh 'docker --version'
-      }
-    }
+//     stage('Docker Version') {
+//       steps {
+//         sh 'docker --version'
+//       }
+//     }
     
-    stage('Building image') {
-      steps{
-        script {
-          dockerImage = docker.build registry
-        }
-      }
-    }
+//     stage('Building image') {
+//       steps{
+//         script {
+//           dockerImage = docker.build registry
+//         }
+//       }
+//     }
     
-    stage('Docker tag image') {
-  steps {
-    sh 'docker tag  grafana hergi2004/grafana:v1.0.0'
-      }
-    }
-     stage('Docker run image') {
-  steps {
-    sh 'docker run -d --rm grafana hergi2004/grafana:v1.0.0'
-      }
-    }
-    stage('Container Vulnerability Scanning') {
-  steps {
-    sh 'grype hergi2004/grafana:v1.0.0 --scope AllLayers'
-  }
-    } 
-     stage('Container BOM with syft') {
-  steps {
-    sh 'syft hergi2004/grafana:v1.0.0 --scope all-layers'
-  }
-    } 
+//     stage('Docker tag image') {
+//   steps {
+//     sh 'docker tag  grafana hergi2004/grafana:v1.0.0'
+//       }
+//     }
+//      stage('Docker run image') {
+//   steps {
+//     sh 'docker run -d --rm grafana hergi2004/grafana:v1.0.0'
+//       }
+//     }
+//     stage('Container Vulnerability Scanning') {
+//   steps {
+//     sh 'grype hergi2004/grafana:v1.0.0 --scope AllLayers'
+//   }
+//     } 
+//      stage('Container BOM with syft') {
+//   steps {
+//     sh 'syft hergi2004/grafana:v1.0.0 --scope all-layers'
+//   }
+//     } 
 
-     // Uploading Docker images into Docker Hub
-    stage('Upload Image') {
-     steps{    
-         script {
-            docker.withRegistry('', registryCredential ) {
-            dockerImage.push()
-            }
-        } 
-     }
-    }
+//      // Uploading Docker images into Docker Hub
+//     stage('Upload Image') {
+//      steps{    
+//          script {
+//             docker.withRegistry('', registryCredential ) {
+//             dockerImage.push()
+//             }
+//         } 
+//     }
+//     }
+
   }
 }
