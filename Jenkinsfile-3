@@ -4,7 +4,6 @@ pipeline {
     stage('Tooling') {
       steps {
         sh '''
-          apk
           apk add --update docker openrc
           node --version
           git --version
