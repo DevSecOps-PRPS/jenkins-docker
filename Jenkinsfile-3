@@ -5,6 +5,7 @@ pipeline {
       steps {
         sh '''
           apk
+          yum
           node --version
           git --version
           curl --version
