@@ -5,7 +5,7 @@ pipeline {
       steps {
         sh '''
           apk
-          yum
+          apk add --update docker openrc
           node --version
           git --version
           curl --version
@@ -13,7 +13,6 @@ pipeline {
           grype version
           curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
           syft version
-          apk add --update docker openrc
         '''
       }
     }
