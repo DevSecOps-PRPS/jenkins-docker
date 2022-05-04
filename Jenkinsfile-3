@@ -4,6 +4,9 @@ pipeline {
     stage('Tooling') {
       steps {
         sh '''
+          apt-get
+          apt
+          apk
           node --version
           git --version
           curl --version
