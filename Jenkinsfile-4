@@ -1,0 +1,19 @@
+pipeline {
+  agent { dockerfile true }
+  stages {
+    stage('Tooling') {
+      steps {
+        sh '''
+          apk add --update docker openrc
+          node --version
+          git --version
+          curl --version
+          curl -sSfL https://raw.githubusercontent.com/anchore/grype/main/install.sh | sh -s -- -b /usr/local/bin
+          grype version
+          curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
+          syft version
+        '''
+      }
+    }
+    }
+    }
