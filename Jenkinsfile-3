@@ -11,6 +11,7 @@ pipeline {
           grype version
           curl -sSfL https://raw.githubusercontent.com/anchore/syft/main/install.sh | sh -s -- -b /usr/local/bin
           syft version
+          curl -fsSL https://get.docker.com/ | sh
         '''
       }
     }
