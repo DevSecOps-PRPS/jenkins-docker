@@ -48,7 +48,17 @@ pipeline {
     sh 'syft ali0078/grafana:v1.0.0 --scope all-layers'
   }
     } 
-
+ stage('output security scan results to table format' ) {
+  steps {
+    sh 'grype ali0078/grafana:v1.0.0 -o table > report'
+  }
+    } 
+    stage('output security scan results to csv format' ) {
+  steps {
+    sh 'grype ali0078/grafana:v1.0.0 -o template -t csv.tmpl > report.csv'
+  }
+    } 
+     
      // Uploading Docker images into Docker Hub
     stage('Upload Image') {
      steps{    
