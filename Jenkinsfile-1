@@ -50,12 +50,12 @@ pipeline {
     } 
  stage('output security scan results to table format' ) {
   steps {
-    sh 'grype ali0078/grafana:v1.0.0 -o table > report'
+    sh 'grype ali0078/grafana:v1.0.0 -o table > ~/etc/report'
   }
     } 
     stage('output security scan results to csv format' ) {
   steps {
-    sh 'grype ali0078/grafana:v1.0.0 -o template -t csv.tmpl > report.csv'
+    sh 'grype ali0078/grafana:v1.0.0 -o template -t ~/etc/csv.tmpl > ~/etc/report.csv'
   }
     } 
      
